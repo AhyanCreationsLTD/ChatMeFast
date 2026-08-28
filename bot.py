@@ -7,8 +7,8 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
 
-API_TOKEN = os.getenv('8858810262:AAF14gSU22mPmxL9342fiX-VdjxIVhbNS_A')
-LOG_CHANNEL_ID = os.getenv('-1003744006717')
+API_TOKEN = os.getenv('API_TOKEN')
+LOG_CHANNEL_ID = os.getenv('LOG_CHANNEL_ID')
 
 logging.basicConfig(level=logging.INFO)
 
