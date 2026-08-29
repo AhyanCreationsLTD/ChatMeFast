@@ -1,10 +1,9 @@
-import os
 import telebot
 from groq import Groq
 
-# GitHub Secrets থেকে টোকেনগুলো রিড করবে
-TELEGRAM_TOKEN = os.environ.get('TELEGRAM_TOKEN')
-GROQ_API_KEY = os.environ.get('GROQ_API_KEY')
+# আপনার টেলিগ্রাম বট টোকেন এবং Groq API Key সরাসরি এখানে বসিয়ে দিন
+TELEGRAM_TOKEN = "‎8858810262:AAF14gSU22mPmxL9342fiX-VdjxIVhbNS_A"
+GROQ_API_KEY = "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"
 
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
 groq_client = Groq(api_key=GROQ_API_KEY)
@@ -22,7 +21,7 @@ def ask_groq(prompt):
                     "content": prompt,
                 }
             ],
-            model="llama3-70b-8192", # Groq এর অত্যন্ত ফাস্ট ও জনপ্রিয় মডেল
+            model="llama3-70b-8192", # Groq এর ফাস্ট ও পাওয়ারফুল মডেল
         )
         return chat_completion.choices[0].message.content
     except Exception as e:
@@ -45,3 +44,4 @@ def handle_message(message):
 if __name__ == "__main__":
     print("Groq Telegram Bot is running via Polling...")
     bot.infinity_polling()
+    
