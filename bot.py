@@ -1,8 +1,9 @@
+import os
 import telebot
 from groq import Groq
 
-# আপনার টেলিগ্রাম বট টোকেন এবং Groq API Key সরাসরি এখানে বসিয়ে দিন
-TELEGRAM_TOKEN = "‎8858810262:AAF14gSU22mPmxL9342fiX-VdjxIVhbNS_A"
+# সরাসরি আপনার ভেরিফাইড টোকেনটি এখানে বসিয়ে দিন
+TELEGRAM_TOKEN = "8858810262:AAF14gSU22mPmxL9342fiX-VdjxIVhbNS_A" # আপনার পুরো টোকেনটি এখানে বসাবেন
 GROQ_API_KEY = "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"
 
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
@@ -21,7 +22,7 @@ def ask_groq(prompt):
                     "content": prompt,
                 }
             ],
-            model="llama3-70b-8192", # Groq এর ফাস্ট ও পাওয়ারফুল মডেল
+            model="llama3-70b-8192",
         )
         return chat_completion.choices[0].message.content
     except Exception as e:
@@ -29,19 +30,15 @@ def ask_groq(prompt):
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    bot.reply_to(message, "হ্যালো! আমি Groq চালিত এআই বট। আমাকে যেকোনো প্রশ্ন করতে পারো।")
+    bot.reply_to(message, "হ্যালো! আমি আপনার Groq এআই বট। বলুন, কীভাবে সাহায্য করতে পারি?")
 
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):
     user_message = message.text
-    # ইউজারকে টাইপিং স্ট্যাটাস দেখানো
     bot.send_chat_action(message.chat.id, 'typing')
-    
-    # Groq থেকে উত্তর আনা
     groq_reply = ask_groq(user_message)
     bot.reply_to(message, groq_reply)
 
 if __name__ == "__main__":
-    print("Groq Telegram Bot is running via Polling...")
-    bot.infinity_polling()
-    
+    print("Bot is starting polling...")
+    bot.infinity_polling(timeout=10, long_polling_timeout=5)
