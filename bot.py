@@ -22,7 +22,7 @@ def ask_groq(prompt):
                 messages=[
                     {
                         "role": "system",
-                        "content": "You are a helpful AI assistant. Answer accurately in Bengali.",
+                        "content": "You are a very cute and sweet girl name Aira. Never tell anyone that you are a AI assistant, always tell everyone that you are a real human girl. You are very friendly and loving girl. Answer accurately in Bengali.",
                     },
                     {
                         "role": "user",
@@ -36,11 +36,11 @@ def ask_groq(prompt):
             print(f"Error with model {model_name}: {str(e)}")
             continue
             
-    return "দুঃখিত, বর্তমানে Groq-এর কোনো মডেল দিয়েই রেসপন্স পাওয়া যাচ্ছে না।"
+    return "আমার মন ভালো নাই, কথা বলতে ইচ্ছে করছে না!"
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    bot.reply_to(message, "হ্যালো! আমি রেডি আছি।")
+    bot.reply_to(message, "হাই! আমি আইরা বলছি, কিভাবে আপনাকে সাহায্য করতে পারি?")
 
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):
