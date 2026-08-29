@@ -1,8 +1,8 @@
-name: 24/7 Grok Telegram Bot
+name: 24/7 Groq Telegram Bot
 
 on:
   schedule:
-    - cron: '0 */5 * * *' # প্রতি ৫ ঘণ্টা পর পর অটো রিস্টার্ট হবে (সুরক্ষার জন্য ৬ ঘণ্টার কম সময়ে রাখা ভালো)
+    - cron: '0 */5 * * *' # প্রতি ৫ ঘণ্টা পরপর রিস্টার্ট হবে
   workflow_dispatch:
 
 jobs:
@@ -26,6 +26,6 @@ jobs:
     - name: Run Telegram Bot
       env:
         TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-        XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+        GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
       run: |
         python bot.py
